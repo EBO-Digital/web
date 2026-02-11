@@ -305,3 +305,27 @@ h1{
   transform: translateY(-2px);
   box-shadow: 0 12px 24px rgba(143, 179, 201, 0.45);
 }
+
+/* Cartes projets : même hauteur + bouton en bas */
+.card.project{
+  display: flex;
+  flex-direction: column;
+  min-height: 240px; /* ajuste si besoin */
+}
+
+.card.project .chips{
+  margin-top: auto; /* pousse le bloc "chips" + bouton vers le bas */
+}
+
+.card.project .demo-badge,
+.card.project .link,
+.card.project .github-link{
+  align-self: flex-start; /* bouton propre à gauche */
+  margin-top: 12px;
+}
+
+.card.project .demo-badge{
+  width: fit-content;
+  min-width: 190px;
+  justify-content: center;
+}
