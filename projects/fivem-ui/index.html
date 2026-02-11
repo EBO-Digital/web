@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EBO Digital — FiveM HUD & Notifications</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="back" href="../../index.html">← Retour au portfolio</a>
+
+    <div class="brand">
+      <span class="logo">EBO</span>
+      <span class="name">EBO Digital</span>
+    </div>
+  </header>
+
+  <main class="scene">
+    <!-- HUD -->
+    <section class="hud" aria-label="HUD">
+      <div class="hud-row">
+        <div class="pill">
+          <span class="label">ID</span>
+          <span id="hudId" class="value">12</span>
+        </div>
+
+        <div class="pill">
+          <span class="label">Zone</span>
+          <span id="hudZone" class="value">Legion Square</span>
+        </div>
+
+        <div class="pill money">
+          <span class="label">$</span>
+          <span id="hudMoney" class="value">3 250</span>
+        </div>
+      </div>
+
+      <div class="bars">
+        <div class="bar">
+          <div class="bar-top">
+            <span>Vie</span><span id="hpVal">75%</span>
+          </div>
+          <div class="bar-track"><div id="hpFill" class="bar-fill"></div></div>
+        </div>
+
+        <div class="bar">
+          <div class="bar-top">
+            <span>Armure</span><span id="armorVal">40%</span>
+          </div>
+          <div class="bar-track"><div id="armorFill" class="bar-fill soft"></div></div>
+        </div>
+
+        <div class="bar">
+          <div class="bar-top">
+            <span>Faim</span><span id="hungerVal">20%</span>
+          </div>
+          <div class="bar-track"><div id="hungerFill" class="bar-fill warm"></div></div>
+        </div>
+
+        <div class="bar">
+          <div class="bar-top">
+            <span>Soif</span><span id="thirstVal">55%</span>
+          </div>
+          <div class="bar-track"><div id="thirstFill" class="bar-fill cool"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Notifications -->
+    <section class="toasts" aria-label="Notifications" id="toasts"></section>
+
+    <!-- Control panel (démo) -->
+    <section class="panel" aria-label="Contrôles de démo">
+      <h1>FiveM HUD + Notifications</h1>
+      <p class="muted">
+        Démo web d’une UI NUI (style FiveM). Ajuste les valeurs et génère des notifications.
+      </p>
+
+      <div class="grid">
+        <label>
+          Vie
+          <input id="hp" type="range" min="0" max="100" value="75">
+        </label>
+
+        <label>
+          Armure
+          <input id="armor" type="range" min="0" max="100" value="40">
+        </label>
+
+        <label>
+          Faim
+          <input id="hunger" type="range" min="0" max="100" value="20">
+        </label>
+
+        <label>
+          Soif
+          <input id="thirst" type="range" min="0" max="100" value="55">
+        </label>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="btnInfo">Notif info</button>
+        <button class="btn soft" id="btnSuccess">Notif succès</button>
+        <button class="btn warn" id="btnWarn">Notif warning</button>
+        <button class="btn danger" id="btnError">Notif erreur</button>
+      </div>
+
+      <div class="row">
+        <button class="btn ghost" id="btnRandom">Random values</button>
+        <button class="btn ghost" id="btnClear">Clear notifs</button>
+      </div>
+
+      <p class="small muted">
+        (Plus tard, on pourra brancher ça à de vrais events NUI.)
+      </p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
