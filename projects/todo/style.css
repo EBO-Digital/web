@@ -1,0 +1,362 @@
+:root {
+  --bg: #f6f7f9;
+  --card: #ffffff;
+
+  --text: #1f2937;
+  --muted: #6b7280;
+
+  --primary: #8fb3c9;
+  --primary-hover: #7aa6bf;
+
+  --secondary: #c7dedd;
+
+  --danger: #e57373;
+  --danger-hover: #d95f5f;
+
+  --border: #e5e7eb;
+
+  --radius: 18px;
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Layout */
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 20px 50px;
+}
+
+
+/* Header */
+h1 {
+  margin: 0 0 6px;
+  font-size: 2.1rem;
+  font-weight: 600;
+}
+
+p {
+  margin: 0 0 22px;
+  color: var(--muted);
+}
+
+/* Card */
+.section {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 22px 22px 26px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
+
+.section h2 {
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+#taskInput {
+  flex: 1;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #fbfbfc;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+#taskInput:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(143, 179, 201, 0.25);
+}
+
+#addTaskBtn {
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#addTaskBtn:hover {
+  background: var(--primary-hover);
+}
+
+/* Text helpers */
+.hint {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.counter {
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+/* Filters & actions */
+.filters,
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.filter-btn,
+.action-btn {
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #f9fafb;
+  color: var(--text);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  background: var(--secondary);
+  border-color: var(--secondary);
+}
+
+.action-btn.danger {
+  background: #fdecec;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.action-btn.danger:hover {
+  background: var(--danger);
+  color: white;
+}
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* List */
+#taskList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+/* Task */
+.task {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  background: #fafafa;
+  border: 1px solid var(--border);
+  cursor: grab;
+  transition: background 0.2s ease;
+}
+
+.task:hover {
+  background: #f4f6f8;
+}
+
+.task.no-drag {
+  cursor: default;
+}
+
+.task input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+.task .label {
+  flex: 1;
+}
+
+.task.done .label {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+/* Drag */
+.task.dragging {
+  opacity: 0.6;
+  border-style: dashed;
+}
+
+/* Topbar ToDo */
+.todo-topbar {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  margin-bottom: 20px;
+}
+
+.todo-topbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back-link {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--primary);
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+
+.back-link:hover {
+  background: var(--secondary);
+}
+
+.todo-brand {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text);
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.todo-title {
+  margin: 0 0 14px;
+  font-size: 1.6rem;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.filters, .actions {
+  margin-bottom: 0; /* on retire leur margin, c’est la toolbar qui gère */
+}
+
+
+.controls {
+  align-items: stretch;
+}
+
+#addTaskBtn {
+  min-width: 120px;
+}
+
+@media (max-width: 720px) {
+  .controls {
+    flex-direction: column;
+  }
+  #addTaskBtn {
+    width: 100%;
+  }
+}
+
+.todo-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ebo-logo {
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 10px 22px rgba(143,179,201,0.25);
+}
+
+.ebo-text {
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+
+
+.task {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.task.task-appear {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.task.task-appear.task-appear--in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+
+.todo-footer{
+  text-align: center;
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.todo-title{
+  margin: 0 0 14px;
+  font-size: 1.6rem;
+}
+
+.container{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.toolbar{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.filters, .actions{
+  margin-bottom: 0;
+}
+
+.todo-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.ebo-logo{
+  display:block;
+  border-radius:12px;
+  box-shadow: 0 10px 22px rgba(143,179,201,0.25);
+}
+
+.ebo-text{
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+

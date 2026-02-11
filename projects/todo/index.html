@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EBO Digital - To-Do List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="todo-topbar">
+    <div class="container">
+      <a class="back-link" href="../../index.html">← Retour au portfolio</a>
+
+      <div class="todo-brand">
+        <svg class="ebo-logo" width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="6" y="6" width="52" height="52" rx="16" fill="#8fb3c9"/>
+          <path d="M22 42V22h14c6 0 9 2.5 9 6.8 0 2.6-1.2 4.5-3.2 5.6 2.6 1 4.2 3.1 4.2 6.1 0 4.8-3.6 7.5-10 7.5H22Zm6-12h8.2c2 0 3-0.8 3-2.2s-1-2.2-3-2.2H28v4.4Zm0 7h9c2.2 0 3.4-0.9 3.4-2.5 0-1.6-1.2-2.5-3.4-2.5H28v5Z" fill="white"/>
+        </svg>
+        <span class="ebo-text">EBO Digital</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2 class="todo-title">To-Do App — EBO Digital</h2>
+
+      <div class="controls">
+        <input type="text" id="taskInput" placeholder="Nouvelle tâche">
+        <button id="addTaskBtn">Ajouter</button>
+      </div>
+
+      <p class="hint">Entrée : ajouter | Double-clic : supprimer | Glisser-déposer : réordonner</p>
+      <p id="counter" class="counter"></p>
+
+      <div class="toolbar">
+        <div class="filters">
+          <button class="filter-btn active" data-filter="all">Toutes</button>
+          <button class="filter-btn" data-filter="active">Inachevées</button>
+          <button class="filter-btn" data-filter="done">Terminées</button>
+        </div>
+
+        <div class="actions">
+          <button id="clearDoneBtn" class="action-btn">Effacer les tâches terminées</button>
+          <button id="clearAllBtn" class="action-btn danger">Tout effacer</button>
+        </div>
+      </div>
+
+      <ul id="taskList"></ul>
+    </section>
+
+    <footer class="todo-footer">
+      © <span id="year"></span> EBO Digital
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
