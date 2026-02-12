@@ -13,32 +13,6 @@ const ranges = {
   thirst: document.getElementById("thirst"),
 };
 
-// -------------------------
-// Mode In-Game (H)
-// -------------------------
-let inGame = false;
-
-function setInGameMode(on) {
-  inGame = !!on;
-  document.body.classList.toggle("ingame", inGame);
-  // Optionnel: mémoriser
-  localStorage.setItem("ebo_ingame", inGame ? "1" : "0");
-}
-
-// restore
-setInGameMode(localStorage.getItem("ebo_ingame") === "1");
-
-// Toggle au clavier (H)
-window.addEventListener("keydown", (e) => {
-  // évite de toggler quand tu écris dans un input
-  const tag = document.activeElement?.tagName?.toLowerCase();
-  if (tag === "input" || tag === "textarea") return;
-
-  if (e.key.toLowerCase() === "h") {
-    setInGameMode(!inGame);
-  }
-});
-
 
 const ui = {
   hpFill: document.getElementById("hpFill"),
@@ -232,29 +206,6 @@ document.getElementById("cashPlusBig")?.addEventListener("click", () => {
 });
 
 
-const panel = document.querySelector(".panel");
-const btnToggleUI = document.getElementById("btnToggleUI");
-
-function toggleUI() {
-  panel.classList.toggle("hidden");
-}
-
-// bouton
-btnToggleUI.addEventListener("click", toggleUI);
-
-// touche H
-document.addEventListener("keydown", (e) => {
-  if (e.key.toLowerCase() === "h") {
-    toggleUI();
-  }
-});
-
-function toggleUI() {
-  document.body.classList.toggle("ingame");
-  const on = document.body.classList.contains("ingame");
-  flashInGameBadge(on ? "MODE IN-GAME" : "MODE UI");
-}
-
 function flashInGameBadge(text = "MODE IN-GAME") {
   const badge = document.getElementById("ingameBadge");
   if (!badge) return;
@@ -267,4 +218,50 @@ function flashInGameBadge(text = "MODE IN-GAME") {
   badge.classList.add("show");
 }
 
+function setInGameMode(on) {
+  document.body.classList.toggle("ingame", !!on);
+  flashInGameBadge(on ? "MODE IN-GAME" : "MODE UI");
+  localStorage.setItem("ebo_ingame", on ? "1" : "0");
+}
 
+// -------------------------
+// MODE IN-GAME = cache la démo + badge + mémorise (H + bouton)
+// -------------------------
+const panel = document.querySelector(".panel");
+const btnToggleUI = document.getElementById("btnToggleUI");
+
+let inGame = false;
+
+function setInGameMode(on) {
+  inGame = !!on;
+
+  // classe globale (pour masquer/adapter d'autres éléments via CSS si tu veux)
+  document.body.classList.toggle("ingame", inGame);
+
+  // cache/affiche le panel de démo
+  if (panel) panel.classList.toggle("hidden", inGame);
+
+  // badge
+  flashInGameBadge(inGame ? "MODE IN-GAME" : "MODE UI");
+
+  // mémorise
+  localStorage.setItem("ebo_ingame", inGame ? "1" : "0");
+}
+
+// restore au chargement
+setInGameMode(localStorage.getItem("ebo_ingame") === "1");
+
+// bouton
+btnToggleUI?.addEventListener("click", () => {
+  setInGameMode(!inGame);
+});
+
+// touche H
+window.addEventListener("keydown", (e) => {
+  const tag = document.activeElement?.tagName?.toLowerCase();
+  if (tag === "input" || tag === "textarea") return;
+
+  if (e.key.toLowerCase() === "h") {
+    setInGameMode(!inGame);
+  }
+});
