@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EBO Digital — Calculateur de devis</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="back" href="../../index.html">← Retour au portfolio</a>
+    <div class="brand">
+      <span class="logo">EBO</span>
+      <span class="name">EBO Digital</span>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="card hero">
+      <h1>Calculateur de devis</h1>
+      <p class="muted">
+        Sélectionne tes prestations (FiveM, Red M, jeux vidéos en particulier / Web), options, puis génère un devis prêt à envoyer sur Discord.
+      </p>
+
+      <div class="tabs" role="tablist" aria-label="Type de clients">
+        <button class="tab active" id="tabFiveM" type="button" aria-selected="true">🎮 FiveM, Red M, jeux vidéos en particulier </button>
+        <button class="tab" id="tabWeb" type="button" aria-selected="false">🌐 Web</button>
+      </div>
+    </section>
+
+    <section class="grid">
+      <!-- Config -->
+      <section class="card">
+        <h2>Prestations</h2>
+
+        <div class="group" id="services"></div>
+
+        <h3>Options</h3>
+        <div class="group" id="options"></div>
+
+        <div class="row split">
+          <div class="field">
+            <label for="projectName">Nom du projet</label>
+            <input id="projectName" type="text" placeholder="Ex: Script job + UI inventaire" />
+          </div>
+
+          <div class="field">
+            <label for="eta">Délai estimé</label>
+            <input id="eta" type="text" value="3 à 5 jours" />
+          </div>
+        </div>
+
+        <div class="row split">
+          <div class="field">
+            <label for="payment">Paiement</label>
+            <select id="payment">
+              <option value="50% à la commande">50% à la commande puis 50% à la livraison</option>
+              <option value="100% à la commande">100% à la commande</option>
+            </select>
+          </div>
+
+          <div class="field" style="margin-top:12px;">
+  <label for="notes">Notes</label>
+  <textarea id="notes" placeholder="Ex: ESX/QBCore, contraintes, références UI, priorité, détails..."></textarea>
+</div>
+
+
+          <div class="field">
+            <label for="contact">Contact</label>
+            <input id="contact" type="text" value="@meuhsaure (MEUH)" />
+          </div>
+        </div>
+
+        <div class="row">
+          <button class="btn" id="btnGenerate" type="button">Générer le devis</button>
+          <button class="btn ghost" id="btnReset" type="button">Réinitialiser</button>
+        </div>
+      </section>
+
+      <!-- Résultat -->
+      <section class="card">
+        <div class="summary">
+          <div>
+            <h2>Résumé</h2>
+            <p class="muted small">Total calculé en direct + message prêt à coller.</p>
+          </div>
+
+          <div class="total">
+            <span class="muted small">Total</span>
+            <div class="price"><span id="totalPrice">0</span>€</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>Devis (Discord)</h3>
+        <textarea id="quoteOutput" readonly placeholder="Clique sur “Générer le devis”"></textarea>
+
+        <div class="row">
+          <button class="btn soft" id="btnCopy" type="button">Copier le devis</button>
+          <span class="copied" id="copiedMsg" aria-live="polite"></span>
+        </div>
+
+        <p class="muted small foot">
+          Astuce : Vous pouvez copier le Devis et me l'envoyer par Mail ou via Discord.
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
