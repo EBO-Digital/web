@@ -17,59 +17,73 @@
     </div>
   </header>
 
+  <div id="ingameBadge" class="ingame-badge" aria-live="polite">
+  MODE IN-GAME
+</div>
+
   <main class="scene">
+
+<!-- Zone Card -->
+<section class="zone-card" aria-label="Zone et minimap">
+  <div class="mini-wrap">
+    <div class="mini-pulse" aria-hidden="true"></div>
+
+    <div class="mini-map">
+      <img src="assets/map.jpg" alt="Mini map">
+    </div>
+
+    <!-- Boussole -->
+    <div class="compass" aria-hidden="true">
+      <span class="c n">N</span>
+      <span class="c e">E</span>
+      <span class="c s">S</span>
+      <span class="c w">W</span>
+    </div>
+  </div>
+
+  <div class="zone-info">
+    <div class="zone-top">
+      <span class="zone-label">Zone</span>
+
+      <span class="gps" aria-label="GPS">
+        <!-- Icône GPS (SVG) -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7z"
+                stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <circle cx="12" cy="12" r="2.2" fill="currentColor"/>
+        </svg>
+      </span>
+    </div>
+
+    <span id="hudZoneName" class="zone-name">Legion Square</span>
+    <span class="zone-sub">Los Santos</span>
+  </div>
+</section>
+
+
     <!-- HUD -->
-    <section class="hud" aria-label="HUD">
-      <div class="hud-row">
-        <div class="pill">
-          <span class="label">ID</span>
-          <span id="hudId" class="value">12</span>
-        </div>
+<section class="hud">
+  <div class="hud-row">
+    <div class="pill id-pill">
+      <span class="label">ID</span>
+      <span id="hudId" class="value">12</span>
+    </div>
 
-        <div class="pill">
-          <span class="label">Zone</span>
-          <span id="hudZone" class="value">Legion Square</span>
-        </div>
+    <div class="pill money-pill">
+      <span class="label">$</span>
+      <span id="hudCash" class="value">3 250</span>
+    </div>
+  </div>
 
-        <div class="pill money">
-          <span class="label">$</span>
-          <span id="hudMoney" class="value">3 250</span>
-        </div>
-      </div>
+</section>
 
-      <div class="bars">
-        <div class="bar">
-          <div class="bar-top">
-            <span>Vie</span><span id="hpVal">75%</span>
-          </div>
-          <div class="bar-track"><div id="hpFill" class="bar-fill"></div></div>
-        </div>
 
-        <div class="bar">
-          <div class="bar-top">
-            <span>Armure</span><span id="armorVal">40%</span>
-          </div>
-          <div class="bar-track"><div id="armorFill" class="bar-fill soft"></div></div>
-        </div>
-
-        <div class="bar">
-          <div class="bar-top">
-            <span>Faim</span><span id="hungerVal">20%</span>
-          </div>
-          <div class="bar-track"><div id="hungerFill" class="bar-fill warm"></div></div>
-        </div>
-
-        <div class="bar">
-          <div class="bar-top">
-            <span>Soif</span><span id="thirstVal">55%</span>
-          </div>
-          <div class="bar-track"><div id="thirstFill" class="bar-fill cool"></div></div>
-        </div>
-      </div>
-    </section>
 
     <!-- Notifications -->
     <section class="toasts" aria-label="Notifications" id="toasts"></section>
+
+    
 
     <!-- Control panel (démo) -->
     <section class="panel" aria-label="Contrôles de démo">
@@ -101,23 +115,103 @@
       </div>
 
       <div class="actions">
-        <button class="btn" id="btnInfo">Notif info</button>
-        <button class="btn soft" id="btnSuccess">Notif succès</button>
-        <button class="btn warn" id="btnWarn">Notif warning</button>
-        <button class="btn danger" id="btnError">Notif erreur</button>
+        <button class="btn" id="btnInfo">Notif INFO</button>
+        <button class="btn soft" id="btnSuccess">Notif SUCCÈS</button>
+        <button class="btn warn" id="btnWarn">Notif ATTENTION</button>
+        <button class="btn danger" id="btnError">Notif ERREUR</button>
+      </div>
+
+      <div class="row" style="margin-top:10px;">
+  <button class="btn ghost" id="cashMinus">- 100$</button>
+  <button class="btn ghost" id="cashPlus">+ 100$</button>
+  <button class="btn ghost" id="cashPlusBig">+ 1000$</button>
+</div>
+
+      <div class="row">
+        <button class="btn ghost" id="btnRandom">Aléatoire</button>
+        <button class="btn ghost" id="btnClear">Effacer notifs</button>
       </div>
 
       <div class="row">
-        <button class="btn ghost" id="btnRandom">Random values</button>
-        <button class="btn ghost" id="btnClear">Clear notifs</button>
-      </div>
+  <button class="btn ghost" id="btnToggleUI">Mode In-Game (H)</button>
+</div>
 
-      <p class="small muted">
-        (Plus tard, on pourra brancher ça à de vrais events NUI.)
-      </p>
+
     </section>
   </main>
 
+  <!-- Stats dock (bottom-right) -->
+<section class="stats-dock" aria-label="Stats">
+  <div class="vstat hp">
+    <div class="vtrack">
+      <div class="vfill" id="hpFill"></div>
+    </div>
+    <div class="vicon" aria-hidden="true">
+<svg viewBox="0 0 24 24" class="ico" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M20.8 8.7c0 5-8.8 11.3-8.8 11.3S3.2 13.7 3.2 8.7c0-2.5 2-4.5 4.6-4.5 1.8 0 3.4 1 4.2 2.3.8-1.3 2.4-2.3 4.2-2.3 2.6 0 4.6 2 4.6 4.5z"/>
+</svg>
+
+</div>
+
+    <span class="vval" id="hpVal">75%</span>
+  </div>
+
+  <div class="vstat armor">
+    <div class="vtrack">
+      <div class="vfill" id="armorFill"></div>
+    </div>
+<div class="vicon" aria-hidden="true">
+<svg viewBox="0 0 24 24" class="ico" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4z"/>
+  <path d="M12 6v14" opacity=".35"/>
+</svg>
+
+</div>
+
+  </div>
+
+  <div class="vstat hunger">
+    <div class="vtrack">
+      <div class="vfill" id="hungerFill"></div>
+    </div>
+<div class="vicon" aria-hidden="true">
+<svg viewBox="0 0 24 24" class="ico" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Fork -->
+  <path d="M6 3v7"/>
+  <path d="M4.8 3v4"/>
+  <path d="M7.2 3v4"/>
+  <path d="M4.8 7h2.4"/>
+  <path d="M6 10v11"/>
+
+  <!-- Knife -->
+  <path d="M16 3c1.6 0 2.8 1.9 2.8 4.2V21"/>
+  <path d="M16 3v7"/>
+</svg>
+
+
+
+</div>
+
+  </div>
+
+  <div class="vstat thirst">
+    <div class="vtrack">
+      <div class="vfill" id="thirstFill"></div>
+    </div>
+<div class="vicon" aria-hidden="true">
+<svg viewBox="0 0 24 24" class="ico" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M12 2s6 7 6 12a6 6 0 0 1-12 0c0-5 6-12 6-12z"/>
+</svg>
+
+</div>
+
+  </div>
+</section>
+
+
   <script src="script.js"></script>
+
+  <audio id="notifSound" src="assets/notif.mp3" preload="auto"></audio>
+
 </body>
 </html>
